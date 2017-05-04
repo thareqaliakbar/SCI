@@ -102,8 +102,7 @@ class Admin extends CI_Controller{
 	public function view_customer(){
 		$tampil = array('data'=> $this->m_db->lihat());
 		$this->load->view('v_customer', $tampil); 
-	  }
-	
+	}
 	
 	public function delete_barang($id){
 			$del = $this->m_db->delete_mhs($id);

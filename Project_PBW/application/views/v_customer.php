@@ -5,7 +5,7 @@
 	<link href="<?php echo base_url('files/css/style.css') ?>" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<table border="">
+	<table>
 		<tr class="baris1">
 			<td>
 				<img src="icon.png" alt="logo"/>
@@ -26,19 +26,27 @@
 				</div>
 			</td>
 		</tr>
-		<?php echo form_open_multipart(base_url('index.php/admin/view_customer')); ?>
-		<form method="POST">
-			<tr class='baris2'>				
-				<?php foreach($data as $key) {
-				echo"<td colspan='2'>
+		<?php 
+		echo form_open_multipart(base_url('index.php/admin/view_customer'));?>
+		<form method="POST" class='baris2'>
+		<?php
+			$kolom=3;
+			$i=0;
+			foreach($data as $key){
+				if($i>=$kolom){
+					echo "<tr></tr>";
+				}
+				$i++;
+				echo"<td colspan='2' class='baris2'>
 						<a href='' target='_blank'>
 							<img src='".$key->image."' width='150' height='150' style='margin:5px;'>
-							<br>$key->nama_barang
+							<br><b>$key->nama_barang</b>
+							<br><i>$key->asal_daerah</i>
 						</a>
 					</td>";
-				}?>
-			</tr>
-		</form>
+			}
+		
+		?>
 		<tr class="baris4">
 			<td colspan="6"></td>
 		</tr>
