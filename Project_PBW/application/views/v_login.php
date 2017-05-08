@@ -1,7 +1,8 @@
 <html>
   <head>
     <title>SCI | Budaya Nusantara</title>
-	<link href="<?php echo base_url('files/css/styleLogin.css') ?>" rel="stylesheet" type="text/css">
+	<link href="<?php //bagian elsa
+	echo base_url('files/css/styleLogin.css') ?>" rel="stylesheet" type="text/css">
   </head>	
   <body>
 	<div class="container">

@@ -13,7 +13,7 @@
         <ul id="menu-utama"> 
 			<li><a href="<?php echo base_url('index.php/admin/index') ?>">Tambah Data</a></li>
 			<li><a href="<?php echo base_url('index.php/admin/update') ?>">Update Data</a></li> 
-			<li><a href="<?php echo base_url('index.php/admin/lihat') ?>" target="_blank">Lihat</a></li>
+			<li><a href="<?php echo base_url('index.php/admin/view_customer')?>" target="_blank">Lihat</a></li>
         </ul>
 	</div>
 	<div id="container">
@@ -30,8 +30,13 @@
 				<input type="text" name="nb" class="form-control"/><br />	
 				Asal Daerah 	:
 				<input type="text" name="ad" class="form-control"/><br />	
-				Kategori		:
-				<input type="text" name="kate" class="form-control"/>	<br />				
+				Kategori		:		
+				<select name="kate" class="form-control">
+						<option value=""></option>
+						<option value="Alat Musik">Alat Musik</option>
+						<option value="Alat Musik">Batik</option>
+						<option value="Alat Musik">Pakaian Adat</option>
+				</select><br />	
 				Keterangan		:
 				<input type="text" name="ket" class="form-control"/><br />
 				Image			:<br /><br />		

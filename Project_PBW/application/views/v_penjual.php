@@ -13,7 +13,7 @@
         <ul id="menu-utama"> 
 			<li><a href="<?php echo base_url('index.php/admin/penjual') ?>">Tambah Data</a></li>
 			<li><a href="<?php echo base_url('index.php/admin/update') ?>">Update Data</a></li> 
-			<li><a href="<?php echo base_url('index.php/admin/lihat') ?>" target="_blank">Lihat</a></li>
+			<li><a href="<?php echo base_url('index.php/admin/view_customer')?>" target="_blank">Lihat</a></li>
         </ul>
 	</div>
 	<div id="container">

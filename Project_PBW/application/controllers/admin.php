@@ -30,16 +30,14 @@ class Admin extends CI_Controller{
 	function insertBarang(){
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '5000'; //in kb
+		$config['max_size']	= '5000';
  
 		$this->upload->initialize($config);
  
-		//if upload failed
 		if ( ! $this->upload->do_upload('image')){
  
 			$data['message'] =  $this->upload->display_errors();
 			$this->load->view('notification_view', $data);
-		//if upload success
 		}else{
 			$url = base_url('/uploads/');
 			$Barang = array(
@@ -51,12 +49,8 @@ class Admin extends CI_Controller{
 			'image' => $url.$this->upload->data('file_name')
 			);
 			
-			//query to insert into myupload table
 			$this->load->model('m_db');
 			$this->m_db->insertModel('tb_barang', $Barang);
- 
-			//$data['message'] =  'Your file was successfully uploaded!';
-			//$this->load->view('notification_view', $data);
 
 			$this->penjual();
 		}
@@ -69,12 +63,10 @@ class Admin extends CI_Controller{
  
 		$this->upload->initialize($config);
  
-		//if upload failed
 		if ( ! $this->upload->do_upload('image')){
  
 			$data['message'] =  $this->upload->display_errors();
 			$this->load->view('notification_view', $data);
-		//if upload success
 		}else{
 			$url = base_url('/uploads/');
 			$Toko = array(
@@ -84,12 +76,8 @@ class Admin extends CI_Controller{
 			'image_penjual' => $url.$this->upload->data('file_name')
 			);
 			
-			//query to insert into myupload table
 			$this->m_db->insertModel('tb_penjual', $Toko);
  
-			//$data['message'] =  'Your file was successfully uploaded!';
-			//$this->load->view('notification_view', $data);
-
 			$this->penjual();
 		}
 	}
@@ -97,47 +85,61 @@ class Admin extends CI_Controller{
 	public function view_barang(){
 		$tampil = array('data'=> $this->m_db->lihat());
 		$this->load->view('v_data', $tampil); 
-	  }
+	}
 	  
 	public function view_customer(){
-		$tampil = array('data'=> $this->m_db->lihat());
+		$tampil = array('data'=> $this->m_db->lihatA());
 		$this->load->view('v_customer', $tampil); 
 	}
 	
+	public function view_customer2(){
+		$tampil = array('data'=> $this->m_db->lihatB());
+		$this->load->view('v_customer2', $tampil); 
+	}
+	
+	public function view_customer3(){
+		$tampil = array('data'=> $this->m_db->lihatC());
+		$this->load->view('v_customer3', $tampil); 
+	}
+	
+	function daftarPenjual($cd){
+    	$tampil = array('data'=> $this->m_db->lihatPenjual($cd));
+		$this->load->view('v_daftarPenjual',$tampil);
+    }
+	
 	public function delete_barang($id){
-			$del = $this->m_db->delete_mhs($id);
-			
-			redirect('admin/view_barang/');
-			
-			
-	}
+		$del = $this->m_db->delete_mhs($id);
 		
-	public function edit_barang($kd)
-	{
-		$data['kd'] = $kd;
+		redirect('admin/view_barang/');		
+	}
+	
+	function edit_barang($cd){
+         /* $where = array('code_barang' => $cd);
+          $data = $this->m_db->whereData('tb_barang', $where);
+
+          $this->load->view('v_data');
+          $this->load->view('edit_barang', array('data'=> $data[0]));*/
+		$data['kd'] = $cd;
 		$this->load->view('edit_barang',$data);
-	}
-		
-	public function action_edit_barang()
-	{
-		$kode     = $this->input->post('cd');
+        }
+
+        function action_edit_barang(){
+		$cd    = $this->input->post('cd');
 		$asal    = $this->input->post('ad');
 		$nama  = $this->input->post('nb');
 		$kategori  = $this->input->post('kate');
 		$keterangan   = $this->input->post('ket');
-		$where = array('code_barang' => $kode);
-		$Barang = array(
+          $Barang   = array(
 			'nama_barang' => $nama,
 			'asal_daerah' => $asal,
 			'kategori' => $kategori,
 			'keterangan' => $keterangan
-		);
-		$update = $this->m_db->edit_barang($Barang,$where);
-		if($update){
-			redirect('admin/update');
-		}
-		else{
-			echo "gagal";
-		}
-	}	
+          );
+          $update = $this->m_db->updatebarang($cd, $Barang);
+
+          if($update){
+            redirect(base_url('index.php/admin/update'));
+          }
+        }
+	
 }

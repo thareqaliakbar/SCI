@@ -25,15 +25,20 @@
 		<?php echo form_open_multipart(base_url('index.php/admin/action_edit_barang')); ?>
 			<form method="POST">	
 				Kode Barang 	:
-				<input type="text" name="cd" value='<?php echo $kd ?>' class="form-control" disabled/><br />	
+				<input type="text" name="cd" class="form-control" value="<?php echo $kd?>"/><br />	
 				Nama Barang 	:
 				<input type="text" name="nb" class="form-control"/><br />	
 				Asal Daerah 	:
 				<input type="text" name="ad" class="form-control"/><br />	
-				Kategori		:
-				<input type="text" name="kate" class="form-control"/>	<br />				
+				Kategori		:		
+				<select name="kate" class="form-control">
+						<option value=""></option>
+						<option value="Alat Musik">Alat Musik</option>
+						<option value="Batik">Batik</option>
+						<option value="Pakaian Adat">Pakaian Adat</option>
+				</select><br />				
 				Keterangan		:
-				<input type="text" name="ket" class="form-control"/><br />
+				<textarea type="text" name="ket" class="form-control"/></textarea>
 				<input type="submit" name="submit" value="Update" class="btn-primary"/>
 			</form>
 		</div>

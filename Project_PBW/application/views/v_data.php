@@ -12,15 +12,15 @@
          <ul id="menu-utama">
             <li><a href="<?php echo base_url('index.php/admin/index') ?>">Tambah Data</a></li>
             <li><a href="<?php echo base_url('index.php/admin/update') ?>">Update Data</a></li>
-            <li><a href="<?php echo base_url('index.php/admin/lihat') ?>" target="_blank">Lihat</a></li>
+            <li><a href="<?php echo base_url('index.php/admin/view_customer')?>" target="_blank">Lihat</a></li>
          </ul>
       </div>
       <div id="container">
          <div id="content">
             <?php echo form_open_multipart(base_url('index.php/admin/view_barang')); ?>
             <form method="POST">
-               <table class="table table-hover" border='1'>
-                  <tr>
+               <table border='1'>
+                  <tr width="100%">
                      <th>
                         Kode Barang
                      </th>
@@ -37,7 +37,7 @@
                         Gambar
                      </th>
                      <th>
-                        HAPUS
+                        Update
                      </th>
                   </tr>
                   <?php foreach($data as $key) {
@@ -45,7 +45,7 @@
                      <td>$key->code_barang</td>
 					 <td>$key->nama_barang</td>
                      <td> $key->kategori</td>
-                     <td width='100%'>$key->keterangan</td>
+                     <td>$key->keterangan</td>
 					 <td><img src='$key->image' width='150' height='150' style='margin:5px;'></td>
                      <td colspan='2'>
 					 <a href='".base_url('index.php/admin/delete_barang/').$key->code_barang."' class='btn btn-danger'>Hapus</a>
@@ -56,10 +56,6 @@
                      
                      }	
                      ?>
-               </table>
-               </tbody>
-               <tfoot>
-               </tfoot>
                </table>
             </form>
          </div>
